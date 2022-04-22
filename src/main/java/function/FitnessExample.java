@@ -5,16 +5,16 @@ import fitnesse.wiki.*;
 
 public class FitnessExample {
     public String testableHtml(PageData pageData, boolean includeSuiteSetup) throws Exception {
-        return new TestableHtmlBuilder(pageData, includeSuiteSetup).surround();
+        return new TestableHtml(pageData, includeSuiteSetup).surround();
     }
 
-    private class TestableHtmlBuilder {
-        private final StringBuffer buffer;
+    private class TestableHtml {
         private PageData pageData;
         private boolean includeSuiteSetup;
         private WikiPage wikiPage;
+        private StringBuffer buffer;
 
-        public TestableHtmlBuilder(PageData pageData, boolean includeSuiteSetup) {
+        public TestableHtml(PageData pageData, boolean includeSuiteSetup) {
             this.pageData = pageData;
             this.includeSuiteSetup = includeSuiteSetup;
             wikiPage = pageData.getWikiPage();
@@ -22,41 +22,38 @@ public class FitnessExample {
         }
 
         public String surround() throws Exception {
-            if (ifTestPage())
-                surroundPageWithSetUpsAndTearDowns();
+            if(isTestPage())
+                includeSetupsAndTeardowns();
+            pageData.setContent(buffer.toString());
             return pageData.getHtml();
         }
 
-        private void surroundPageWithSetUpsAndTearDowns() throws Exception {
-            includeSetup();
-            buffer.append(pageData.getContent());
-            includeTeardowns();
-            pageData.setContent(buffer.toString());
-        }
-
-        private boolean ifTestPage() throws Exception {
+        private boolean isTestPage() throws Exception {
             return pageData.hasAttribute("Test");
         }
 
+        private void includeSetupsAndTeardowns() throws Exception {
+            includeSetups();
+            buffer.append(pageData.getContent());
+            includeTeardowns();
+        }
+
         private void includeTeardowns() throws Exception {
-            includeInherited("TearDown", "teardown");
-            if (includeSuiteSetup) {
-                includeInherited(SuiteResponder.SUITE_TEARDOWN_NAME, "teardown");
-            }
+            includeInherited("teardown", "TearDown");
+            if (includeSuiteSetup)
+                includeInherited("teardown", SuiteResponder.SUITE_TEARDOWN_NAME);
         }
 
-        private void includeSetup() throws Exception {
-            if (includeSuiteSetup) {
-                includeInherited(SuiteResponder.SUITE_SETUP_NAME, "setup");
-            }
-            includeInherited("SetUp", "setup");
+        private void includeSetups() throws Exception {
+            if (includeSuiteSetup)
+                includeInherited("setup", SuiteResponder.SUITE_SETUP_NAME);
+            includeInherited("setup", "SetUp");
         }
 
-        private void includeInherited(String pageName, String mode) throws Exception {
-            WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(pageName, wikiPage);
-            if (suiteTeardown != null) {
+        private void includeInherited(String mode, String suiteTeardownName) throws Exception {
+            WikiPage suiteTeardown = PageCrawlerImpl.getInheritedPage(suiteTeardownName, wikiPage);
+            if (suiteTeardown != null)
                 includePage(suiteTeardown, mode);
-            }
         }
 
         private void includePage(WikiPage suiteTeardown, String mode) throws Exception {

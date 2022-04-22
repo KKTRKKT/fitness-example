@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f3475df-17e0-4cad-8f49-f836ea7e9233" name="Changes" comment="" />
+    <list default="true" id="3f3475df-17e0-4cad-8f49-f836ea7e9233" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/function/FitnessExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/function/FitnessExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/function/FitnessExample$TestableHtmlBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/function/FitnessExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/function/FitnessExample.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,13 +29,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2899KWQLwYpCz9zqVwQJvwGufRw" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -44,6 +42,8 @@
     <property name="go.format.on.save.advertiser.fired" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
   </component>
   <component name="RunManager">
@@ -78,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1650617873472</updated>
       <workItem from="1650617874782" duration="3689000" />
+      <workItem from="1650632084380" duration="2708000" />
     </task>
     <servers />
   </component>
